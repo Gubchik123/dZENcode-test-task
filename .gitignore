@@ -10,9 +10,8 @@ __pycache__/
 *.swp
 *.swo
 
-# Django static files
-/staticfiles/
-/static/
+# Django admin static files
+/static/admin/
 
 # Django media files
 /media/
