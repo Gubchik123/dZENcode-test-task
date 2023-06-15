@@ -11,6 +11,7 @@ handler400 = CustomBadRequestView.as_view()
 handler404 = CustomNotFoundView.as_view()
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("captcha/", include("captcha.urls")),
     path("", include("comments.urls")),
+    path("admin/", admin.site.urls),
 ]
