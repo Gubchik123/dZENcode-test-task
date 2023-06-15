@@ -1,0 +1,20 @@
+{% extends '_base.html' %}
+
+{% block title %}{{ error.code }}{% endblock %}
+
+
+{% block content %}
+<div class="row content-center">
+    <div class="col-10 alert alert-danger" role="alert">
+        <div class="d-flex align-items-center">
+            <ion-icon name="warning" class="me-3"></ion-icon>
+            <h2 class="alert-heading">{{ error.name }}</h2>
+        </div>
+        <hr/>
+        <h5>{{ error.description }}</h5>
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block go_to_top_btn %}{% endblock %} 

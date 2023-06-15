@@ -1,0 +1,77 @@
+/* CSS variables */
+:root {
+    --text-color: var(--bs-dark);
+
+    --shadow-color: var(--bs-secondary);
+
+    --bg-color: #cccccc;
+    --content-bg-color: #e7e7e7;
+    --panel-bg-color: #f2f2f2;
+}
+
+.text-color { color: var(--text-color); }
+.bg-color { background-color: var(--bg-color); }
+.panel-bg-color { background-color: var(--panel-bg-color); }
+.content-bg-color { background-color: var(--content-bg-color); }
+
+/* Global styles */
+html,
+body {
+    height: 100%;
+    font-size: 1.1em;
+    scroll-behavior: smooth;
+
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+ion-icon { font-size: 2em; }
+
+.content-center, .content-between {
+    display: flex;
+    align-items: center;
+}
+.content-center { justify-content: center; }
+.content-between { justify-content: space-between; }
+
+.disabled { cursor: not-allowed; }
+
+.opacity-1,
+#go-to-top-btn:hover { opacity: 1; }
+
+a, a.text-color, #go-to-top-btn {
+    opacity: 0.8;
+    transition: 0.3s;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+a:hover, a.text-color:hover {
+    opacity: 1;
+    color: var(--text-color);
+}
+
+/* Main styles */
+main { flex: 1 1 auto; }
+
+.btn { opacity: 1; }
+
+#go-to-top-btn {
+    z-index: 80; 
+    border: none;
+    opacity: 0.8;
+    outline: none;
+    position: fixed;
+    transition: 0.2s;
+    border-radius: 10px;
+    width: 50px; height: 50px;
+    right: 30px; bottom: 30px;
+    display: none; /* Hidden by default */
+
+    color: white;
+    background-color: var(--bs-dark);
+}
+#go-to-top-btn ion-icon { font-size: 1.5em; }
+
+/* Footer styles */
+footer { z-index: 90; }
