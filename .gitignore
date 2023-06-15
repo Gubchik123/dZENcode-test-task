@@ -1,0 +1,37 @@
+# Python/Django specific files
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+*.pyi
+*.egg-info/
+*.egg
+*.pyc
+*.swp
+*.swo
+
+# Django static files
+/staticfiles/
+/static/
+
+# Django media files
+/media/
+
+# Virtual environment
+venv/
+venv*/
+
+# IDE specific files (Visual Studio Code)
+.vscode/
+*.code-workspace
+.vs/
+
+# Environment variable file
+.env
+
+# Log files
+logs/
+*.log
+
+# Database file (SQLite)
+db.sqlite3
