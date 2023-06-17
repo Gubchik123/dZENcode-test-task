@@ -13,9 +13,9 @@ from general.views import BaseView
 class CommentListView(BaseView, generic.ListView):
     """View for displaying all comments."""
 
-    model = Comment
     paginate_by = 25
     extra_context = {"form": CommentModelForm()}
+    queryset = Comment.objects.filter(parent_id__isnull=True)
 
     def get(
         self, request: http.HttpRequest, *args: Any, **kwargs: Any
