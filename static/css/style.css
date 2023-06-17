@@ -61,6 +61,8 @@ label, legend {
 }
 textarea { height: 100px; }
 
+#ordering { box-shadow: 0 10px 6px -6px gray; }
+
 .btn { opacity: 1; }
 
 #go-to-top-btn {
