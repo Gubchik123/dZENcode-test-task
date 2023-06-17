@@ -22,14 +22,15 @@ class CommentModelForm(forms.ModelForm):
     )
     captcha = CaptchaField(widget=CaptchaTextInput(attrs=FIELD_WIDGET_ATTRS))
 
-    def save(self, commit=True) -> Comment:
+    def save(self, commit=False) -> Comment:
         """Creates a comment for new or exist author."""
-        comment = super().save(commit)
-        author, was_created = Author.objects.get_or_create(
+        comment: Comment = super().save(commit)
+        author, _ = Author.objects.get_or_create(
             username=self.cleaned_data["username"],
             email=self.cleaned_data["email"],
         )
         comment.author = author
+        comment.save()
         return comment
 
     class Meta:
