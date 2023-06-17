@@ -7,8 +7,9 @@
         <form 
             method="post" 
             id="comment_form" 
-            action="{% url 'comments:add' %}" 
             class="sticky-lg-top pt-4"
+            enctype="multipart/form-data"
+            action="{% url 'comments:add' %}" 
         >
             {% csrf_token %}
 
