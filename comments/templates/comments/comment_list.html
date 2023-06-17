@@ -4,7 +4,7 @@
 {% block content %}
 <div class="row rounded content-bg-color px-2 py-4">
     <div class="col-lg-4 col-md-12">
-        <form id="comment_form" action="" method="post">
+        <form id="comment_form" action="{% url 'comments:add' %}" method="post">
             {% csrf_token %}
 
             {{ form.as_div }}
