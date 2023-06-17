@@ -4,10 +4,17 @@
 {% block content %}
 <div class="row rounded content-bg-color px-2 pb-4">
     <div class="col-lg-4 col-md-12">
-        <form id="comment_form" action="{% url 'comments:add' %}" method="post" class="sticky-lg-top pt-4">
+        <form 
+            method="post" 
+            id="comment_form" 
+            action="{% url 'comments:add' %}" 
+            class="sticky-lg-top pt-4"
+        >
             {% csrf_token %}
 
             {{ form.as_div }}
+
+            <input type="hidden" id="comment_parent" name="comment_parent_id" />
 
             <div class="mt-3 text-center">
                 <input type="submit" value="Add comment" class="btn btn-lg btn-success">
@@ -95,6 +102,7 @@
                 <a
                     href="#comment_form"
                     class="btn btn-info btn-sm"
+                    onclick="add_answer_for_('{{ comment.author.username }}', '{{ comment.id }}')"
                 >
                     Answer
                 </a>
@@ -127,6 +135,14 @@
 
 {% block scripts %}
 {% load static %}
+<script defer>
+	function add_answer_for_(name, id) {
+		document.getElementById("comment_parent").value = id;
+		document.getElementById("id_text").innerText = `${name}, `;
+		document.querySelector("label[for='id_text']").textContent = "Answer:";
+		document.querySelector("#comment_form .btn").value = "Add answer";
+	}
+</script>
 <script defer src="{% static 'js/comments/ordering.js' %}"></script>
 <script defer src="{% static 'js/comments/resize_pagination.js' %}"></script>
 {% endblock scripts %} 

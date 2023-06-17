@@ -41,12 +41,19 @@ class CommentCreateView(generic.CreateView):
     http_method_names = ["post"]
     form_class = CommentModelForm
 
-    def form_valid(self, form: CommentModelForm) -> http.HttpResponse:
-        """Adds the success message and returns the super method."""
-        messages.success(self.request, "Your comment has successfully added.")
-        return super().form_valid(form)
+    def form_valid(self, form: CommentModelForm) -> http.HttpResponseRedirect:
+        """Saves the form,
+        adds the success message and returns redirect to the success_url."""
+        comment_parent_id = self.request.POST.get("comment_parent_id", None)
+        form.save(comment_parent_id)
 
-    def form_invalid(self, form: CommentModelForm) -> http.HttpResponse:
+        s = "comment" if comment_parent_id is None else "answer"
+        messages.success(self.request, f"Your {s} has successfully added.")
+        return http.HttpResponseRedirect(self.success_url)
+
+    def form_invalid(
+        self, form: CommentModelForm
+    ) -> http.HttpResponseRedirect:
         """Adds form error messages and returns redirect to the success_url."""
         for error in form.errors.as_data().values():
             messages.error(self.request, error[0].messages[0])

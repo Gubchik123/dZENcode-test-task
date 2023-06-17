@@ -24,16 +24,18 @@ class CommentModelForm(forms.ModelForm):
     )
     captcha = CaptchaField(widget=CaptchaTextInput(attrs=FIELD_WIDGET_ATTRS))
 
-    def save(self, commit=False) -> Comment:
+    def save(self, comment_parent_id: str | None, commit=False) -> None:
         """Creates a comment for new or exist author."""
         comment: Comment = super().save(commit)
+        if comment_parent_id and comment_parent_id.isdigit():
+            print("Adding comment parent")
+            comment.parent_id = int(comment_parent_id)
         author, _ = Author.objects.get_or_create(
             username=self.cleaned_data["username"],
             email=self.cleaned_data["email"],
         )
         comment.author = author
         comment.save()
-        return comment
 
     class Meta:
         """Meta options for the CommentModelForm."""
