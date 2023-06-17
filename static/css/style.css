@@ -54,6 +54,9 @@ a:hover, a.text-color:hover {
 /* Main styles */
 main { flex: 1 1 auto; }
 
+.sticky-top ,
+.sticky-lg-top { z-index: 70; }
+
 label { display: block; }
 label, legend {
     font-size: large;
@@ -97,5 +100,5 @@ footer { z-index: 90; }
         align-items: start;
         flex-direction: column;
     }
-    #ordering { height: 120px; }
+    .dropdown-toggle { margin-bottom: 10px; }
 }
