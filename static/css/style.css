@@ -65,6 +65,8 @@ textarea { height: 100px; }
 
 .btn { opacity: 1; }
 
+.child-comments { margin-left: 20px; }
+
 #go-to-top-btn {
     z-index: 80; 
     border: none;
