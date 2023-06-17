@@ -83,31 +83,10 @@
             </div>
         </div>
 
+        {% load comment_filters %}
+
     {% for comment in page_obj %}
-        <div class="mt-4">
-            <div
-                class="review rounded p-2 mb-1 bg-secondary text-white content-between"
-            >
-                <div class="content-center">
-                    <ion-icon 
-                        class="me-2"
-                        name="person-circle" 
-                    ></ion-icon>
-                    <b>{{ comment.author.username }}</b>
-                </div>
-                {{ comment.created |date:"d.m.Y | H:i" }}
-            </div>
-            <div class="content-between">
-                <p class="mb-0">{{ comment.text }}</p>
-                <a
-                    href="#comment_form"
-                    class="btn btn-info btn-sm"
-                    onclick="add_answer_for_('{{ comment.author.username }}', '{{ comment.id }}')"
-                >
-                    Answer
-                </a>
-            </div>
-        </div>
+        {{ comment|render_comments|safe }}
     {% empty %}
         <div role="alert" class="alert alert-primary">
             <div class="d-flex align-items-center">
