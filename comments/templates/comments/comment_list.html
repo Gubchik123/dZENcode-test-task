@@ -112,9 +112,9 @@
 
     {% if page_obj.paginator.num_pages > 1 %} 
         {% if "page" in request.GET.urlencode %}
-            {% include 'utils/_pagination_nav.html' with page_obj=page_obj other_get_parameters=request.GET.urlencode|slice:"7:" only %}
+            {% include 'comments/utils/_pagination_nav.html' with page_obj=page_obj other_get_parameters=request.GET.urlencode|slice:"7:" only %}
         {% else %}
-            {% include 'utils/_pagination_nav.html' with page_obj=page_obj other_get_parameters=request.GET.urlencode only %}
+            {% include 'comments/utils/_pagination_nav.html' with page_obj=page_obj other_get_parameters=request.GET.urlencode only %}
         {% endif %} 
     {% endif %}
     </div>
