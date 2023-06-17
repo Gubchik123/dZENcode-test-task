@@ -47,7 +47,7 @@ class CommentCreateView(generic.CreateView):
         comment_parent_id = self.request.POST.get("comment_parent_id", None)
         form.save(comment_parent_id)
 
-        s = "comment" if comment_parent_id is None else "answer"
+        s = "comment" if not comment_parent_id else "answer"
         messages.success(self.request, f"Your {s} has successfully added.")
         return http.HttpResponseRedirect(self.success_url)
 
