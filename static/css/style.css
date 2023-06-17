@@ -54,6 +54,13 @@ a:hover, a.text-color:hover {
 /* Main styles */
 main { flex: 1 1 auto; }
 
+label { display: block; }
+label, legend {
+    font-size: large;
+    font-family:Arial, Helvetica, sans-serif;
+}
+textarea { height: 100px; }
+
 .btn { opacity: 1; }
 
 #go-to-top-btn {
@@ -75,3 +82,16 @@ main { flex: 1 1 auto; }
 
 /* Footer styles */
 footer { z-index: 90; }
+
+/* Media queries */
+@media screen and (max-width: 992px) { /* Bootstrap5 .lg breakpoint */
+    input[type="submit"] { margin-bottom: 20px; }
+}
+
+@media screen and (max-width: 576px) { /* Bootstrap5 .sm breakpoint */
+    #ordering, .review {
+        align-items: start;
+        flex-direction: column;
+    }
+    #ordering { height: 120px; }
+}
