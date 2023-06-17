@@ -29,12 +29,8 @@ class CommentListView(BaseView, generic.ListView):
         return context
 
     def get_ordering(self) -> str | None:
-        """Returns ordering string or None after checking GET parameters."""
-        order_by: str = self.request.GET.get("orderby") or "c"
-        order_dir: str = self.request.GET.get("orderdir") or "desc"
-
-        if services.are_ordering_parameters_valid(order_by, order_dir):
-            return services.get_order_symbol_by_(
-                order_dir
-            ) + services.get_correct_(order_by)
-        return None
+        """Returns ordering string or None by the GET parameters."""
+        return services.get_ordering_string(
+            self.request.GET.get("orderby") or "c",
+            self.request.GET.get("orderdir") or "desc",
+        )
