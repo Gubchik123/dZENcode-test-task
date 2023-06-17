@@ -50,6 +50,39 @@
 
             <main class="py-4">
                 <div class="container">
+                    <div class="row">
+                    {# Flashed messages #}
+					{% for message in messages %} 
+                        <div
+                            role="alert"
+                            class="mb-4 alert alert-{{ message.level_tag }} alert-dismissible fade show"
+                        >
+                            <div class="d-flex align-items-center">
+                                <div class="me-3">
+                                {% if message.level_tag == "primary" %}
+                                    <ion-icon name="alert-circle"></ion-icon>
+                                {% elif message.level_tag == "success" %}
+                                    <ion-icon name="checkmark-circle"></ion-icon>
+                                {% else %}
+                                    <ion-icon name="warning"></ion-icon>
+                                {% endif %}
+                                </div>
+                        
+                                <div class="w-100 content-center overflow-auto">
+                                    <h5>{{ message.message }}</h5>
+                                </div>
+                            </div>
+                        
+                            <button
+                                type="button"
+                                class="btn-close"
+                                aria-label="Close"
+                                data-bs-dismiss="alert"
+                            ></button>
+                        </div>
+                    {% endfor %}
+                    </div>
+
                     {% block content %}{% endblock %}
                 </div>
             </main>
