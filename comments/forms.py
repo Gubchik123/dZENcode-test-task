@@ -1,5 +1,6 @@
 from django import forms
 from captcha.fields import CaptchaField, CaptchaTextInput
+from django.contrib.auth.validators import UnicodeUsernameValidator
 
 from .models import Author, Comment
 
@@ -14,6 +15,7 @@ class CommentModelForm(forms.ModelForm):
         max_length=100,
         min_length=2,
         required=True,
+        validators=[UnicodeUsernameValidator()],
         widget=forms.TextInput(attrs=FIELD_WIDGET_ATTRS),
     )
     email = forms.EmailField(
