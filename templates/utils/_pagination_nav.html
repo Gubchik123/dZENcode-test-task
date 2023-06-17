@@ -1,0 +1,84 @@
+<nav class="d-flex justify-content-center mt-4">
+    <ul class="pagination pagination-sm">
+        <!-- Arrow to previous page -->
+        <li
+			class="page-item {% if not page_obj.has_previous %} disabled {% endif %}"
+		>
+            {% if page_obj.has_previous %}
+            <a 
+                class="page-link"
+                href="?page={{ page_obj.previous_page_number }}&{{ other_get_parameters }}" 
+            >
+                &ltrif;
+            </a>
+            {% else %}
+            <span class="page-link">&ltrif;</span>
+            {% endif %}
+        </li>
+
+        {# Button to the first page #}
+        {% if page_obj.number >= 3 %} 
+        <li class="page-item">
+            <a 
+                class="page-link" href="?page=1&{{ other_get_parameters }}" 
+            >
+                1
+            </a>
+        </li>
+        {% endif %}
+
+        {# Pagination ELLIPSIS #}
+        {% if page_obj.number >= 4 %} 
+        <li class="page-item disabled">
+            <span class="page-link">{{ page_obj.paginator.ELLIPSIS }}</span>
+        </li>
+        {% endif %}
+
+        {% for page_n in page_obj.paginator.page_range %}
+        {% if page_n >= page_obj.number|add:-1 and page_n <= page_obj.number|add:1 %} 
+        <li class="page-item {% if page_n == page_obj.number %} active {% endif %}">
+            <a 
+                class="page-link" href="?page={{page_n}}&{{ other_get_parameters }}" 
+            >
+                {{page_n}}
+            </a>
+        </li>
+        {% endif %}
+        {% endfor %}
+
+        {# Pagination ELLIPSIS #}
+        {% if page_obj.number <= page_obj.paginator.num_pages|add:-3 %} 
+        <li class="page-item disabled">
+            <span class="page-link">{{ page_obj.paginator.ELLIPSIS }}</span>
+        </li>
+        {% endif %}
+
+        {# Button to the last page #}
+        {% if page_obj.number <= page_obj.paginator.num_pages|add:-2 %} 
+        <li class="page-item">
+            <a 
+                class="page-link"
+                href="?page={{ page_obj.paginator.num_pages }}&{{ other_get_parameters }}" 
+            >
+                {{ page_obj.paginator.num_pages }}
+            </a>
+        </li>
+        {% endif %}
+        
+        <!-- Arrow to next page -->
+        <li
+			class="page-item {% if not page_obj.has_next %} disabled {% endif %}"
+		>
+            {% if page_obj.has_next %}
+            <a 
+                href="?page={{ page_obj.next_page_number }}&{{ other_get_parameters }}" 
+                class="page-link"
+            >
+                &rtrif;
+            </a>
+            {% else %}
+            <span class="page-link">&rtrif;</span>
+            {% endif %}
+        </li>
+    </ul>
+</nav>
