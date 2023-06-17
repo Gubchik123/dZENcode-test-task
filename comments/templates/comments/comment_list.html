@@ -2,9 +2,9 @@
 
 
 {% block content %}
-<div class="row rounded content-bg-color px-2 py-4">
+<div class="row rounded content-bg-color px-2 pb-4">
     <div class="col-lg-4 col-md-12">
-        <form id="comment_form" action="{% url 'comments:add' %}" method="post">
+        <form id="comment_form" action="{% url 'comments:add' %}" method="post" class="sticky-lg-top pt-4">
             {% csrf_token %}
 
             {{ form.as_div }}
@@ -16,7 +16,10 @@
     </div>
 
     <div class="col-lg-8 col-md-12">
-        <div id="ordering" class="content-between mb-3">
+        <div 
+            id="ordering" 
+            class="content-between py-4 sticky-top content-bg-color"
+        >
             <!-- Dropdown list "Order by" -->
             <div class="dropdown">
                 <button
