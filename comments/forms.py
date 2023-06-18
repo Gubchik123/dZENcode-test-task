@@ -39,14 +39,15 @@ class CommentModelForm(forms.ModelForm):
 
         if comment_parent_id and comment_parent_id.isdigit():
             comment.parent_id = get_object_or_404(
-                Comment, id=comment_parent_id
+                Comment, id=int(comment_parent_id)
             )
+        comment.author = self._get_author()
+
         if canvas_url:
             comment.file.save(
                 comment.file.name,
                 self._get_image_file_from_(canvas_url, comment.file.name),
             )
-        comment.author = self._get_author()
         comment.save()
 
     def _get_author(self) -> Author:
