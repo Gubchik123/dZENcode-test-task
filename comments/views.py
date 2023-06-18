@@ -45,7 +45,8 @@ class CommentCreateView(generic.CreateView):
         """Saves the form,
         adds the success message and returns redirect to the success_url."""
         comment_parent_id = self.request.POST.get("comment_parent_id", None)
-        form.save(comment_parent_id)
+        canvas_url = self.request.POST.get("resized_image", None)
+        form.save(comment_parent_id, canvas_url)
 
         s = "comment" if not comment_parent_id else "answer"
         messages.success(self.request, f"Your {s} has successfully added.")

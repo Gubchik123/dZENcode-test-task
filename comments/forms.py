@@ -1,4 +1,7 @@
+import base64
+
 from django import forms
+from django.core.files.base import ContentFile
 from captcha.fields import CaptchaField, CaptchaTextInput
 from django.contrib.auth.validators import UnicodeUsernameValidator
 
@@ -24,17 +27,31 @@ class CommentModelForm(forms.ModelForm):
     )
     captcha = CaptchaField(widget=CaptchaTextInput(attrs=FIELD_WIDGET_ATTRS))
 
-    def save(self, comment_parent_id: str | None, commit=False) -> None:
+    def save(
+        self,
+        comment_parent_id: str | None,
+        canvas_url: str | None,
+        commit=False,
+    ) -> None:
         """Creates a comment for new or exist author."""
         comment: Comment = super().save(commit)
+
         if comment_parent_id and comment_parent_id.isdigit():
-            print("Adding comment parent")
             comment.parent_id = int(comment_parent_id)
+
         author, _ = Author.objects.get_or_create(
             username=self.cleaned_data["username"],
             email=self.cleaned_data["email"],
         )
         comment.author = author
+
+        if canvas_url:
+            image_data = canvas_url.split(",")[1]
+            image_file = ContentFile(
+                base64.b64decode(image_data), name=comment.file.name
+            )
+            comment.file.save(comment.file.name, image_file)
+
         comment.save()
 
     class Meta:
@@ -49,5 +66,10 @@ class CommentModelForm(forms.ModelForm):
         widgets = {
             "home_page": forms.URLInput(attrs=FIELD_WIDGET_ATTRS),
             "text": forms.Textarea(attrs=FIELD_WIDGET_ATTRS),
-            "file": forms.FileInput(attrs=FIELD_WIDGET_ATTRS),
+            "file": forms.FileInput(
+                attrs={
+                    "class": "form-control mb-1",
+                    "accept": ".jpg, .jpeg, .gif, .png, .txt",
+                }
+            ),
         }
