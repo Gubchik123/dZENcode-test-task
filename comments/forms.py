@@ -1,6 +1,7 @@
 import base64
 
 from django import forms
+from django.shortcuts import get_object_or_404
 from django.core.files.base import ContentFile
 from captcha.fields import CaptchaField, CaptchaTextInput
 from django.contrib.auth.validators import UnicodeUsernameValidator
@@ -37,22 +38,31 @@ class CommentModelForm(forms.ModelForm):
         comment: Comment = super().save(commit)
 
         if comment_parent_id and comment_parent_id.isdigit():
-            comment.parent_id = int(comment_parent_id)
+            comment.parent_id = get_object_or_404(
+                Comment, id=comment_parent_id
+            )
+        if canvas_url:
+            comment.file.save(
+                comment.file.name,
+                self._get_image_file_from_(canvas_url, comment.file.name),
+            )
+        comment.author = self._get_author()
+        comment.save()
 
+    def _get_author(self) -> Author:
+        """Returns new or exist author."""
         author, _ = Author.objects.get_or_create(
             username=self.cleaned_data["username"],
             email=self.cleaned_data["email"],
         )
-        comment.author = author
+        return author
 
-        if canvas_url:
-            image_data = canvas_url.split(",")[1]
-            image_file = ContentFile(
-                base64.b64decode(image_data), name=comment.file.name
-            )
-            comment.file.save(comment.file.name, image_file)
-
-        comment.save()
+    def _get_image_file_from_(
+        self, canvas_url: str, filename: str
+    ) -> ContentFile:
+        """Returns content file from decoded canvas_url."""
+        image_data = canvas_url.split(",")[1]
+        return ContentFile(base64.b64decode(image_data), name=filename)
 
     class Meta:
         """Meta options for the CommentModelForm."""
