@@ -12,7 +12,16 @@
         {{ comment.created |date:"d.m.Y | H:i" }}
     </div>
     <div class="content-between">
-        <p class="mb-0">{{ comment.text|safe }}</p>
+        <p class="mb-0">
+            {{ comment.text|safe }}
+        {% if comment.file %}
+            <br>
+            <b>Attached file: </b>
+            <a href="{{ comment.file.url }}" target="_blank">
+                {{ comment.file.name }}
+            </a>
+        {% endif %}
+        </p>
         <a
             href="#comment_form"
             class="btn btn-info btn-sm"
