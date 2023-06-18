@@ -5,9 +5,9 @@
 <div class="row rounded content-bg-color px-2 pb-4">
     <div class="col-lg-4 col-md-12">
         <form 
+            class="pt-4"
             method="post" 
             id="comment_form" 
-            class="sticky-lg-top pt-4"
             enctype="multipart/form-data"
             action="{% url 'comments:add' %}" 
         >
@@ -15,12 +15,39 @@
 
             {{ form.as_div }}
 
+            <div class="my-3">
+                <a 
+                    id="file-preview" 
+                    data-bs-toggle="modal" 
+                    href="javascript:void(0)" 
+                    class="d-flex content-center"
+                    data-bs-target="#preview-image-modal"
+                ></a>
+            </div>
+
+            <input type="hidden" id="resized_image" name="resized_image" />
             <input type="hidden" id="comment_parent" name="comment_parent_id" />
 
-            <div class="mt-3 text-center">
+            <div class="text-center">
                 <input type="submit" value="Add comment" class="btn btn-lg btn-success">
             </div>
         </form>
+
+        <div class="modal fade" id="preview-image-modal" tabindex="-1" aria-labelledby="preview-image-modal-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="preview-image-modal-label">
+                            Image preview
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex content-center">
+                        <img id="image-preview" src="#" alt="Preview Image" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="col-lg-8 col-md-12">
@@ -124,5 +151,6 @@
 	}
 </script>
 <script defer src="{% static 'js/comments/ordering.js' %}"></script>
+<script defer src="{% static 'js/comments/file_input.js' %}"></script>
 <script defer src="{% static 'js/comments/resize_pagination.js' %}"></script>
 {% endblock scripts %} 
