@@ -64,6 +64,9 @@ label, legend {
 }
 textarea { height: 100px; }
 
+#file-preview img { transition: border 0.3s; }
+#file-preview img:hover { border: 5px solid orange; }
+
 #ordering { box-shadow: 0 10px 6px -6px gray; }
 
 .btn { opacity: 1; }
