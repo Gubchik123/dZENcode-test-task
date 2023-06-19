@@ -16,9 +16,12 @@
             {{ comment.text|safe }}
         {% if comment.file %}
             <br>
-            <b>Attached file: </b>
-            <a href="{{ comment.file.url }}" target="_blank">
-                {{ comment.file.name }}
+            <a 
+                target="_blank"
+                href="{{ comment.file.url }}" 
+                title="{{ comment.file.name }}" 
+            >
+                <b>Attached file</b>
             </a>
         {% endif %}
         </p>
