@@ -83,6 +83,7 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 MESSAGE_TAGS = {messages.INFO: "primary", messages.ERROR: "danger"}
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
 
 def get_generated_captcha_challenge() -> tuple[str, str]:
