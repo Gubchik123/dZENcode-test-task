@@ -59,13 +59,13 @@ function process_image(file) {
 			let width = img.width;
 			let height = img.height;
 
-            if (width > MAX_WIDTH || height > MAX_HEIGHT) {
-                const width_ratio = MAX_WIDTH / width;
-                const height_ratio = MAX_HEIGHT / height;
-                const scale_factor = Math.min(width_ratio, height_ratio);
-                width = Math.floor(width * scale_factor);
-                height = Math.floor(height * scale_factor);
-            }
+			if (width > MAX_WIDTH || height > MAX_HEIGHT) {
+				const width_ratio = MAX_WIDTH / width;
+				const height_ratio = MAX_HEIGHT / height;
+				const scale_factor = Math.min(width_ratio, height_ratio);
+				width = Math.floor(width * scale_factor);
+				height = Math.floor(height * scale_factor);
+			}
 
 			const canvas = document.createElement("canvas");
 			canvas.width = width;
@@ -75,7 +75,7 @@ function process_image(file) {
 
 			const data_url = canvas.toDataURL(file.type);
 			image_preview.src = data_url;
-            resized_image_input.value = data_url;
+			resized_image_input.value = data_url;
 			file_preview.innerHTML = `<img src="${data_url}" alt="Image preview"/>`;
 		};
 		img.src = e.target.result;

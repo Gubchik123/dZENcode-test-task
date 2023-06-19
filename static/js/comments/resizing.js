@@ -11,18 +11,18 @@ function resize() {
 		order_dir_btn.classList.add("btn-group-lg");
 		if (pagination) pagination.classList.add("pagination-lg");
 	} else {
-        order_by_btn.classList.remove("btn-lg");
-        order_dir_btn.classList.remove("btn-group-lg");
+		order_by_btn.classList.remove("btn-lg");
+		order_dir_btn.classList.remove("btn-group-lg");
 		if (pagination) pagination.classList.remove("pagination-lg");
 	}
 
 	if (window.outerWidth <= BOOTSTRAP_5_MD_BREAKPOINT) {
-        order_by_btn.classList.add("btn-sm");
-        order_dir_btn.classList.add("btn-group-sm");
+		order_by_btn.classList.add("btn-sm");
+		order_dir_btn.classList.add("btn-group-sm");
 		if (pagination) pagination.classList.add("pagination-sm");
 	} else {
-        order_by_btn.classList.remove("btn-sm");
-        order_dir_btn.classList.remove("btn-group-sm");
+		order_by_btn.classList.remove("btn-sm");
+		order_dir_btn.classList.remove("btn-group-sm");
 		if (pagination) pagination.classList.remove("pagination-sm");
 	}
 }

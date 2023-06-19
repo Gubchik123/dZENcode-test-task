@@ -13,13 +13,7 @@ function has_unclosed_tags(text) {
 		);
 		return false;
 	}
-    return true;
-}
-
-function is_valid_xhtml(text) {
-	const valid_XHTML = /^<([a-z]+)([^<]+)*(?:>(.*)<\/\1>|\s+\/>)$/.test(text);
-	if (!valid_XHTML) return false;
-    return true;
+	return true;
 }
 
 function is_valid_tags(text) {
@@ -36,7 +30,7 @@ function is_valid_tags(text) {
 			}
 		}
 	}
-    return true;
+	return true;
 }
 
 const submit_btn = document.getElementById("submit_btn");
