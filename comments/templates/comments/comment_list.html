@@ -29,7 +29,9 @@
             <input type="hidden" id="comment_parent" name="comment_parent_id" />
 
             <div class="text-center">
-                <input type="submit" value="Add comment" class="btn btn-lg btn-success">
+                <button id="submit_btn" type="submit" class="btn btn-lg btn-success">
+                    Add comment
+                </button>
             </div>
         </form>
 
@@ -154,4 +156,5 @@
 <script defer src="{% static 'js/comments/btns_panel.js' %}"></script>
 <script defer src="{% static 'js/comments/file_input.js' %}"></script>
 <script defer src="{% static 'js/comments/resize_pagination.js' %}"></script>
+<script defer src="{% static 'js/comments/text_check_onsubmit.js' %}"></script>
 {% endblock scripts %} 
