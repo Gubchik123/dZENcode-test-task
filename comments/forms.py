@@ -39,7 +39,7 @@ class CommentModelForm(forms.ModelForm):
         comment: Comment = super().save(commit)
 
         if comment_parent_id and comment_parent_id.isdigit():
-            comment.parent_id = get_object_or_404(
+            comment.parent = get_object_or_404(
                 Comment, id=int(comment_parent_id)
             )
         comment.author = self._get_author()
