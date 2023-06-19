@@ -21,6 +21,7 @@ class CommentModelForm(forms.ModelForm):
         required=True,
         validators=[UnicodeUsernameValidator()],
         widget=forms.TextInput(attrs=FIELD_WIDGET_ATTRS),
+        help_text="This value may contain only letters, numbers, and @/./+/-/_ characters.",
     )
     email = forms.EmailField(
         required=True,

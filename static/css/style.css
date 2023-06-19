@@ -57,6 +57,7 @@ main { flex: 1 1 auto; }
 .sticky-top ,
 .sticky-lg-top { z-index: 70; }
 
+.helptext { font-style: italic; }
 label { display: block; }
 label, legend {
     font-size: large;
