@@ -8,8 +8,8 @@
             class="pt-4"
             method="post" 
             id="comment_form" 
+            action="{% url 'add' %}" 
             enctype="multipart/form-data"
-            action="{% url 'comments:add' %}" 
         >
             {% csrf_token %}
 
@@ -149,7 +149,7 @@
 		document.getElementById("comment_parent").value = id;
 		document.getElementById("id_text").innerText = `${name}, `;
 		document.querySelector("label[for='id_text']").textContent = "Answer:";
-		document.querySelector("#comment_form .btn").value = "Add answer";
+		document.getElementById("submit_btn").textContent = "Add answer";
 	}
 </script>
 <script defer src="{% static 'js/comments/resizing.js' %}"></script>
