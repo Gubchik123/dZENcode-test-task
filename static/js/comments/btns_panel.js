@@ -19,10 +19,22 @@ for (const tag of ["a", "code", "i", "strong"]) {
 		if (tag === "a") {
 			const href = prompt("Enter href for <a> tag:");
 			const title = prompt("Enter title for <a> tag:");
-			content = `<a href="${href}" title="${title}">${prompt(
-				prompt_message
-			)}</a>`;
-		} else content = `<${tag}>${prompt(prompt_message)}</${tag}>`;
+			const user_answer = prompt(prompt_message);
+
+			if (!href || !title || !user_answer) {
+				e.preventDefault();
+				return;
+			}
+			content = `<a href="${href}" title="${title}">${user_answer}</a>`;
+		} else {
+			const user_answer = prompt(prompt_message);
+
+			if (!user_answer) {
+				e.preventDefault();
+				return;
+			}
+			content = `<${tag}>${user_answer}</${tag}>`;
+		}
 
 		textarea.value += content;
 		e.preventDefault();
