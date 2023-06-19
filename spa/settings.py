@@ -1,5 +1,7 @@
 import os
+import string
 from pathlib import Path
+from random import choices
 
 from dotenv import load_dotenv
 from django.contrib.messages import constants as messages
@@ -105,4 +107,13 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 MESSAGE_TAGS = {messages.INFO: "primary", messages.ERROR: "danger"}
 
+
+def get_generated_captcha_challenge() -> tuple[str, str]:
+    """Returns a generated captcha challenge tuple(challenge, response)."""
+    challenge = "".join(choices(string.ascii_uppercase + string.digits, k=5))
+    response = challenge.lower()
+    return (challenge, response)
+
+
 CAPTCHA_FONT_SIZE = 35
+CAPTCHA_CHALLENGE_FUNCT = get_generated_captcha_challenge
