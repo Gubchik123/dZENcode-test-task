@@ -1,19 +1,14 @@
 <div class="mt-4">
-    <div
-        class="rounded p-2 mb-1 bg-secondary text-white content-between"
-    >
-        <div class="content-center">
-            <ion-icon 
-                class="me-2"
-                name="person-circle" 
-            ></ion-icon>
-            <b>{{ comment.author.username }}</b>
-        </div>
-        {{ comment.created |date:"d.m.Y | H:i" }}
-    </div>
-    <div class="content-between">
-        <p class="mb-0">
-            {{ comment.text|safe }}
+	<div class="rounded p-2 mb-1 bg-secondary text-white content-between">
+		<div class="content-center">
+			<ion-icon class="me-2" name="person-circle"></ion-icon>
+			<b>{{ comment.author.username }}</b>
+		</div>
+		{{ comment.created |date:"d.m.Y | H:i" }}
+	</div>
+	<div class="content-between">
+		<p class="mb-0">
+			{{ comment.text|safe }}
         {% if comment.file %}
             <br>
             <a 
@@ -24,12 +19,12 @@
                 <b>Attached file</b>
             </a>
         {% endif %}
-        </p>
-        <a
-            href="#comment_form"
-            class="btn btn-info btn-sm"
-            onclick="add_answer_for_('{{ comment.author.username }}', '{{ comment.id }}')"
-        >
-            Answer
-        </a>
-    </div>
+		</p>
+		<a
+			href="#comment_form"
+			class="btn btn-info btn-sm"
+			onclick="add_answer_for_('{{ comment.author.username }}', '{{ comment.id }}')"
+		>
+			Answer
+		</a>
+	</div>

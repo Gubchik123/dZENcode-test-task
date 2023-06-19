@@ -3,117 +3,135 @@
 
 {% block content %}
 <div class="row rounded content-bg-color px-2 pb-4">
-    <div class="col-lg-4 col-md-12">
-        <form 
-            class="pt-4"
-            method="post" 
-            id="comment_form" 
-            action="{% url 'add' %}" 
-            enctype="multipart/form-data"
-        >
-            {% csrf_token %}
-
+	<div class="col-lg-4 col-md-12">
+		<form
+			class="pt-4"
+			method="post"
+			id="comment_form"
+			action="{% url 'add' %}"
+			enctype="multipart/form-data"
+		>
+			{% csrf_token %} 
+            
             {{ form.as_div }}
 
-            <div class="my-3">
-                <a 
-                    id="file-preview" 
-                    data-bs-toggle="modal" 
-                    href="javascript:void(0)" 
-                    class="d-flex content-center"
-                    data-bs-target="#preview-image-modal"
-                ></a>
-            </div>
+			<div class="my-3">
+				<a
+					id="file-preview"
+					data-bs-toggle="modal"
+					href="javascript:void(0)"
+					class="d-flex content-center"
+					data-bs-target="#preview-image-modal"
+				></a>
+			</div>
 
-            <input type="hidden" id="resized_image" name="resized_image" />
-            <input type="hidden" id="comment_parent" name="comment_parent_id" />
+			<input type="hidden" id="resized_image" name="resized_image" />
+			<input type="hidden" id="comment_parent" name="comment_parent_id" />
 
-            <div class="text-center">
-                <button id="submit_btn" type="submit" class="btn btn-lg btn-success">
-                    Add comment
-                </button>
-            </div>
-        </form>
+			<div class="text-center">
+				<button
+					id="submit_btn"
+					type="submit"
+					class="btn btn-lg btn-success"
+				>
+					Add comment
+				</button>
+			</div>
+		</form>
 
-        <div class="modal fade" id="preview-image-modal" tabindex="-1" aria-labelledby="preview-image-modal-label" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="preview-image-modal-label">
-                            Image preview
-                        </h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body d-flex content-center">
-                        <img id="image-preview" src="#" alt="Preview Image" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+		<div
+            tabindex="-1"
+			class="modal fade"
+			aria-hidden="true"
+			id="preview-image-modal"
+			aria-labelledby="preview-image-modal-label"
+		>
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1
+							class="modal-title fs-5"
+							id="preview-image-modal-label"
+						>
+							Image preview
+						</h1>
+						<button
+							type="button"
+							class="btn-close"
+							aria-label="Close"
+							data-bs-dismiss="modal"
+						></button>
+					</div>
+					<div class="modal-body d-flex content-center">
+						<img id="image-preview" src="#" alt="Preview Image" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <div class="col-lg-8 col-md-12">
-        <div 
-            id="ordering" 
-            class="content-between py-4 sticky-top content-bg-color"
-        >
-            <!-- Dropdown list "Order by" -->
-            <div class="dropdown">
-                <button
-                    aria-expanded="false"
-                    data-bs-toggle="dropdown"
-                    class="btn btn-primary btn-lg dropdown-toggle"
-                >
-                    Order by
-                </button>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a 
-                            id="order-by-u"
-                            class="dropdown-item" 
-                            href="./?orderby=u&orderdir={{ request.GET.orderdir }}"
-                        >
-                            Username
-                        </a>
-                    </li>
-                    <li>
-                        <a 
-                            id="order-by-e"
-                            class="dropdown-item" 
-                            href="./?orderby=e&orderdir={{ request.GET.orderdir }}"
-                        >
-                            Email
-                        </a>
-                    </li>
-                    <li>
-                        <a 
-                            id="order-by-c"
-                            class="dropdown-item" 
-                            href="./?orderby=c&orderdir={{ request.GET.orderdir }}"
-                        >
-                            Created datetime
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- Sort order -->
-            <div class="btn-group btn-group-lg">
-                <a 
-                    class="btn btn-primary"
-                    href="./?orderby={{ request.GET.orderby }}&orderdir=asc" 
-                >
-                    Ascending
-                </a>
-                <a 
-                    class="btn btn-primary"
-                    href="./?orderby={{ request.GET.orderby }}&orderdir=desc" 
-                >
-                    Descending
-                </a>
-            </div>
-        </div>
+	<div class="col-lg-8 col-md-12">
+		<div
+			id="ordering"
+			class="content-between py-4 sticky-top content-bg-color"
+		>
+			<!-- Dropdown list "Order by" -->
+			<div class="dropdown">
+				<button
+					aria-expanded="false"
+					data-bs-toggle="dropdown"
+					class="btn btn-primary btn-lg dropdown-toggle"
+				>
+					Order by
+				</button>
+				<ul class="dropdown-menu">
+					<li>
+						<a
+							id="order-by-u"
+							class="dropdown-item"
+							href="./?orderby=u&orderdir={{ request.GET.orderdir }}"
+						>
+							Username
+						</a>
+					</li>
+					<li>
+						<a
+							id="order-by-e"
+							class="dropdown-item"
+							href="./?orderby=e&orderdir={{ request.GET.orderdir }}"
+						>
+							Email
+						</a>
+					</li>
+					<li>
+						<a
+							id="order-by-c"
+							class="dropdown-item"
+							href="./?orderby=c&orderdir={{ request.GET.orderdir }}"
+						>
+							Created datetime
+						</a>
+					</li>
+				</ul>
+			</div>
+			<!-- Sort order -->
+			<div class="btn-group btn-group-lg">
+				<a
+					class="btn btn-primary"
+					href="./?orderby={{ request.GET.orderby }}&orderdir=asc"
+				>
+					Ascending
+				</a>
+				<a
+					class="btn btn-primary"
+					href="./?orderby={{ request.GET.orderby }}&orderdir=desc"
+				>
+					Descending
+				</a>
+			</div>
+		</div>
 
-        {% load comment_filters %}
+		{% load comment_filters %}
 
     {% for comment in page_obj %}
         {{ comment|render_comments|safe }}
@@ -137,7 +155,7 @@
             {% include 'comments/utils/_pagination_nav.html' with page_obj=page_obj other_get_parameters=request.GET.urlencode only %}
         {% endif %} 
     {% endif %}
-    </div>
+	</div>
 </div>
 {% endblock content %} 
 
@@ -157,4 +175,4 @@
 <script defer src="{% static 'js/comments/btns_panel.js' %}"></script>
 <script defer src="{% static 'js/comments/file_input.js' %}"></script>
 <script defer src="{% static 'js/comments/text_check_onsubmit.js' %}"></script>
-{% endblock scripts %} 
+{% endblock scripts %}
