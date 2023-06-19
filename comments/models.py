@@ -31,8 +31,9 @@ class _CommentCustomManager(models.Manager):
     """Custom manager for the Comment model."""
 
     def all(self):
-        """Returns all comments using the select_related for the 'parent'."""
-        return super().all().select_related("parent")
+        """Returns all comments
+        using the select_related for the 'parent' and 'author'."""
+        return super().all().select_related("parent", "author")
 
 
 class Comment(models.Model):
