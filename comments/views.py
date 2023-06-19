@@ -15,7 +15,7 @@ class CommentListView(BaseView, generic.ListView):
 
     paginate_by = 25
     extra_context = {"form": CommentModelForm()}
-    queryset = Comment.objects.filter(parent_id__isnull=True)
+    queryset = Comment.objects.all().filter(parent_id__isnull=True)
 
     def get(
         self, request: http.HttpRequest, *args: Any, **kwargs: Any
