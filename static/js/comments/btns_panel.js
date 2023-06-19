@@ -12,7 +12,7 @@ for (const tag of ["a", "code", "i", "strong"]) {
 	button.classList = "btn btn-sm btn-primary me-1";
 	button.textContent = tag;
 
-	button.addEventListener("click", function () {
+	button.addEventListener("click", function (e) {
 		let content = "";
 		const prompt_message = `Enter content for <${tag}> tag:`;
 
@@ -25,6 +25,7 @@ for (const tag of ["a", "code", "i", "strong"]) {
 		} else content = `<${tag}>${prompt(prompt_message)}</${tag}>`;
 
 		textarea.value += content;
+		e.preventDefault();
 	});
 	btns_panel.appendChild(button);
 }
