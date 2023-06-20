@@ -13,9 +13,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = str(os.getenv("SECRET_KEY"))
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "gubchik123.pythonanywhere.com"]
 
 INSTALLED_APPS = [
     # Django apps
@@ -55,8 +55,7 @@ WSGI_APPLICATION = "spa.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "PORT": int(os.getenv("DB_PORT")),
+        "ENGINE": "django.db.backends.mysql",
         "HOST": str(os.getenv("DB_HOST")),
         "NAME": str(os.getenv("DB_NAME")),
         "USER": str(os.getenv("DB_USER")),
@@ -72,10 +71,8 @@ USE_I18N = False
 
 USE_TZ = True
 
-STATIC_URL = "static/"
-STATIC_DIR = BASE_DIR / "static"
-STATICFILES_DIRS = [STATIC_DIR]
-# STATIC_ROOT = BASE_DIR / "static"
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "static"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
