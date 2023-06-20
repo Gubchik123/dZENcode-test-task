@@ -83,9 +83,15 @@ main {
 	z-index: 70;
 }
 
-.helptext {
-	font-style: italic;
+.errorlist {
+    padding-left: 0;
+    list-style: none;
 }
+.errorlist li {
+    color: red;
+    font-style: italic;
+}
+
 label {
 	display: block;
 }

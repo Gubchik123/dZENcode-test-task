@@ -1,4 +1,4 @@
-from typing import Any, NoReturn
+from typing import Any, Dict, NoReturn
 
 from django import http
 from django.views import generic
@@ -10,11 +10,13 @@ from .forms import CommentModelForm
 from general.views import BaseView
 
 
+FORM_DATA = {}
+
+
 class CommentListView(BaseView, generic.ListView):
     """View for displaying all comments."""
 
     paginate_by = 25
-    extra_context = {"form": CommentModelForm()}
     queryset = Comment.objects.all().filter(parent_id__isnull=True)
 
     def get(
@@ -31,6 +33,14 @@ class CommentListView(BaseView, generic.ListView):
             self.request.GET.get("orderby") or "c",
             self.request.GET.get("orderdir") or "desc",
         )
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        """Adds the form to the context and returns it."""
+        global FORM_DATA
+        context = super().get_context_data(**kwargs)
+        context["form"] = CommentModelForm(FORM_DATA or None)
+        FORM_DATA = {}
+        return context
 
 
 class CommentCreateView(BaseView, generic.CreateView):
@@ -55,7 +65,9 @@ class CommentCreateView(BaseView, generic.CreateView):
     def form_invalid(
         self, form: CommentModelForm
     ) -> http.HttpResponseRedirect:
-        """Adds form error messages and returns redirect to the success_url."""
-        for error in form.errors.as_data().values():
-            messages.error(self.request, error[0].messages[0])
+        """Adds error message and returns redirect to the success_url."""
+        global FORM_DATA
+        FORM_DATA = self.request.POST
+        
+        messages.error(self.request, "Invalid form data.")
         return http.HttpResponseRedirect(self.success_url)
