@@ -31,7 +31,7 @@ def render_error_page(request: HttpRequest, error: Error) -> HttpResponse:
         )
 
 
-class _ErrorView(View):
+class ErrorView(View):
     """Base error view for rendering the custom error page."""
 
     code: int
@@ -45,7 +45,7 @@ class _ErrorView(View):
         )
 
 
-class CustomBadRequestView(_ErrorView):
+class CustomBadRequestView(ErrorView):
     """Custom view for handling the 400 HTTP status code."""
 
     code = 400
@@ -53,7 +53,7 @@ class CustomBadRequestView(_ErrorView):
     description = "The server cannot or will not process the request."
 
 
-class CustomNotFoundView(_ErrorView):
+class CustomNotFoundView(ErrorView):
     """Custom view for handling the 404 HTTP status code."""
 
     code = 404
@@ -63,7 +63,7 @@ class CustomNotFoundView(_ErrorView):
     )
 
 
-class CustomServerErrorView(_ErrorView):
+class CustomServerErrorView(ErrorView):
     """Custom view for handling the 500 HTTP status code."""
 
     code = 500
