@@ -33,7 +33,7 @@ class CommentListView(BaseView, generic.ListView):
         )
 
 
-class CommentCreateView(generic.CreateView):
+class CommentCreateView(BaseView, generic.CreateView):
     """View for handling only POST request and creating a comment."""
 
     model = Comment
