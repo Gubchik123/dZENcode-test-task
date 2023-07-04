@@ -1,10 +1,8 @@
-<a href="https://gubchik123.pythonanywhere.com/" target="_blank"><img title="LapZone" alt="Header image" src="./static/images/site_header.webp"></a>
+<img title="LapZone" alt="Header image" src="./static/images/site_header.webp">
 
 _This is a page for leaving comments. Users can add comments with various features, and all the entered comments are saved in a relational database (DB), including user data for identification._
 
 ## Demo
-
-Click **<a href="https://gubchik123.pythonanywhere.com/" target="_blank">here</a>** to open the project.
 
 <p><img title="Demo" alt="Demo image" src="./demo.jpg"></p>
 
