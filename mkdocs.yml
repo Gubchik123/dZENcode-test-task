@@ -1,0 +1,48 @@
+site_name: Spa comments
+copyright: Copyright &copy; 2024 Nikita Hubariev
+repo_url: https://github.com/Gubchik123/dZENcode-test-task
+
+plugins:
+  - mkdocstrings
+  - search
+
+theme:
+  name: material
+  palette:
+    primary: deep blue
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Gubchik123 
+    - icon: fontawesome/brands/telegram
+      link: https://t.me/Gubchik123
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/nikita-hubariev/
+    - icon: fontawesome/brands/instagram
+      link: https://www.instagram.com/notwhale.1746/
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/Gubchik123
+
+nav:
+  - README: index.md
+  - spa:
+    - settings.py: "spa/settings.md"
+    - urls.py: "spa/urls.md"
+    - wsgi.py: "spa/wsgi.md"
+  - comments:
+    - tests:
+      - test_forms.py: "comments/tests/test_forms.md"
+      - test_models.py: "comments/tests/test_models.md"
+      - test_views.py: "comments/tests/test_views.md"
+    - apps.py: "comments/apps.md"
+    - forms.py: "comments/forms.md"
+    - models.py: "comments/models.md"
+    - services.py: "comments/services.md"
+    - urls.py: "comments/urls.md"
+    - views.py: "comments/views.md"
+  - general:
+    - error_views.py: "general/error_views.md"
+    - test_error_views.py: "general/test_error_views.md"
+    - test_views.py: "general/views.md"
+  - manage.py: "manage.md"
